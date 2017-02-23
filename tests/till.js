@@ -35,3 +35,14 @@ test('calculates the total given the order', (t) => {
   t.equal(actualTotal, expectedTotal);
   t.end();
 });
+
+test('calculates change given a users money', (t) => {
+  const moneyGiven = 10;
+  const total = 7.30;
+
+  const expectedChange = 2.70;
+  const actualChange = till.calculateChange(total, moneyGiven);
+
+  t.equal(actualChange, expectedChange);
+  t.end();
+});
