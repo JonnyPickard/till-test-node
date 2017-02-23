@@ -6,9 +6,10 @@ module.exports = {
   },
   tenPercentMuffinDiscount: (item, price) => {
     if (/Muffin/.test(item)) {
-      return price * 0.9;
+      return Number((price * 0.9).toFixed(2));
     } else {
       return price;
     }
   }
 };
+ 
