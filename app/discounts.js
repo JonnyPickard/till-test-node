@@ -1,10 +1,10 @@
+const { _twoDP } = require('./helpers.js');
+
 module.exports = {
   fivePercentOffOverFifty: (total) => {
-    if (total > 50) {
-      return Number((total * 0.95).toFixed(2));
-    }
+    return (total > 50) ? _twoDP(total * 0.95) : total;
   },
   tenPercentMuffinDiscount: (item, price) => {
-    return /Muffin/.test(item) ? Number((price * 0.9).toFixed(2)) : price;
+    return /Muffin/.test(item) ? _twoDP(price * 0.9) : price;
   }
 };

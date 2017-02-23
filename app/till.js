@@ -2,6 +2,7 @@ const fs = require('fs');
 const content = fs.readFileSync('./app/hipstercoffee.json');
 const jSONContent = JSON.parse(content);
 const priceList = jSONContent[0].prices[0];
+const { _twoDP } = require('./helpers.js');
 
 var total = 0;
 var basket = [];
@@ -18,11 +19,11 @@ module.exports = {
     const total = basket.reduce(function(count, item) {
       return count + priceList[item];
     }, 0);
-    return Number(total.toFixed(2));
+    return _twoDP(total);
   },
 
   calculateTax: (runningTotal, tax = 8.64) => {
-    return Number((runningTotal * (1 - tax / 100)).toFixed(2));
+    return _twoDP(runningTotal * (1 - tax / 100));
   },
 
   calculateTotal: function(order) {
