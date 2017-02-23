@@ -17,7 +17,7 @@ test('calculates tax given the running total', (t) => {
   const runningTotal = 20;
   const tax = 8.64;
 
-  const expectedTotal = 17.28;
+  const expectedTotal = 18.27;
   const actualTotal = till.calculateTax(runningTotal, tax);
 
   t.equal(actualTotal, expectedTotal);
@@ -29,14 +29,14 @@ test('calculates the total given the order', (t) => {
                   {1: 'Blueberry Muffin'},
                   {1: 'Choc Mudcake'}];
 
-  const expectedTotal = 17.24;
+  const expectedTotal = 18.23;
   const actualTotal = till.calculateTotal(order);
 
   t.equal(actualTotal, expectedTotal);
   t.end();
 });
 
-test('calculates change given a users money', (t) => {
+test('calculates change correctly given a users money', (t) => {
   const moneyGiven = 10;
   const total = 7.30;
 

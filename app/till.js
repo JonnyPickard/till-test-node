@@ -18,7 +18,7 @@ module.exports = {
   },
 
   calculateTax: (runningTotal, tax = 8.64) => {
-    return Number((runningTotal * (tax / 10)).toFixed(2));
+    return Number((runningTotal * (1 - tax / 100)).toFixed(2));
   },
 
   calculateTotal: function(order) {
