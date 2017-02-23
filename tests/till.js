@@ -12,3 +12,14 @@ test('calculates base price', (t) => {
   t.equal(runningTotal, expectedPrice);
   t.end();
 });
+
+test('calculates tax given the running total', (t) => {
+  const runningTotal = 20;
+  const tax = 8.64;
+
+  const expectedTotal = 17.28;
+  const actualTotal = till.calculateTax(runningTotal, tax);
+
+  t.equal(actualTotal, expectedTotal);
+  t.end();
+});
