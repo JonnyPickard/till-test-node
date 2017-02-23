@@ -4,7 +4,7 @@ const jSONContent = JSON.parse(content);
 const priceList = jSONContent[0].prices[0];
 
 module.exports = {
-  caculateBasePrice: (order) => {
+  calculateBasePrice: (order) => {
     let total = 0;
     for (var i in order) {
       const item = Object.values(order[i]);
@@ -17,5 +17,11 @@ module.exports = {
   },
   calculateTax: (runningTotal, tax = 8.64) => {
     return Number((runningTotal * (tax / 10)).toFixed(2));
+  },
+  calculateTotal: function(order) {
+    const runningTotal = this.calculateBasePrice(order);
+    const total = this.calculateTax(runningTotal);
+
+    return total;
   }
 };
