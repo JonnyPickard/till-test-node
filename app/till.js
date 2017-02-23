@@ -3,17 +3,21 @@ const content = fs.readFileSync('./app/hipstercoffee.json');
 const jSONContent = JSON.parse(content);
 const priceList = jSONContent[0].prices[0];
 
+var total = 0;
+var basket = [];
+
 module.exports = {
+  total: total,
+  basket: basket,
 
-  calculateBasePrice: (order) => {
-    let total = 0;
-    for (var i in order) {
-      const item = Object.values(order[i]);
-      const amount = Object.keys(order[i])[0];
-      const price = priceList[item];
+  scanItem: (item) => {
+    basket.push(item);
+  },
 
-      total += price * amount;
-    }
+  calculateBasePrice: (basket) => {
+    const total = basket.reduce(function(count, item) {
+      return count + priceList[item];
+    }, 0);
     return Number(total.toFixed(2));
   },
 
@@ -22,17 +26,14 @@ module.exports = {
   },
 
   calculateTotal: function(order) {
-    const runningTotal = this.calculateBasePrice(order);
-    const total = this.calculateTax(runningTotal);
+    var runningTotal = this.total;
+    runningTotal = this.calculateBasePrice(order);
+    const finalTotal = this.calculateTax(runningTotal);
 
-    return total;
+    return finalTotal;
   },
 
   calculateChange: (total, moneyGiven) => {
-    if (moneyGiven > total) {
-      return moneyGiven - total;
-    } else {
-      throw 'more money required';
-    }
+    return moneyGiven - total;
   }
 };

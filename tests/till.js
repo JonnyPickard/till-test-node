@@ -1,15 +1,26 @@
 const test = require('tape');
 const till = require('../app/till.js');
 
-test('calculates base price given the order', (t) => {
-  const order = [ {2: 'Cafe Latte'},
-                  {1: 'Blueberry Muffin'},
-                  {1: 'Choc Mudcake'}];
+test('calculate base total given the order', (t) => {
+  const order = ['Cafe Latte', 'Cafe Latte',
+                 'Blueberry Muffin', 'Choc Mudcake'];
 
   const runningTotal = till.calculateBasePrice(order);
   const expectedPrice = 19.95;
 
   t.equal(runningTotal, expectedPrice);
+  t.end();
+});
+
+test('scan item', (t) => {
+  const item = 'Cafe Latte';
+
+  till.scanItem(item);
+
+  const actualBasket = till.basket[0];
+  const expectedBasket = 'Cafe Latte';
+
+  t.equal(actualBasket, expectedBasket);
   t.end();
 });
 
@@ -25,9 +36,8 @@ test('calculates tax given the running total', (t) => {
 });
 
 test('calculates the total given the order', (t) => {
-  const order = [ {2: 'Cafe Latte'},
-                  {1: 'Blueberry Muffin'},
-                  {1: 'Choc Mudcake'}];
+  const order = ['Cafe Latte', 'Cafe Latte',
+                 'Blueberry Muffin', 'Choc Mudcake'];
 
   const expectedTotal = 18.23;
   const actualTotal = till.calculateTotal(order);
