@@ -24,6 +24,8 @@ test('scan item', (t) => {
   t.end();
 });
 
+//
+
 test('calculates tax given the running total', (t) => {
   const runningTotal = 20;
   const tax = 8.64;
