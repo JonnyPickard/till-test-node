@@ -17,6 +17,13 @@ test('scan item', (t) => {
   t.end();
 });
 
+test('check item is available', (t) => {
+  const item = 'Cafe Lat';
+
+  t.throws(() => { till.checkItemIsAvailable(item); });
+  t.end();
+});
+
 test('fetch item price', (t) => {
   const item = 'Cafe Latte';
   const expectedPrice = 4.75;

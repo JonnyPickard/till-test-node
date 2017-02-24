@@ -8,7 +8,12 @@ const { calculateTotalDiscount } = require('./discounts');
 var _total = 0;
 var _basket = [];
 
+const _checkItemIsAvailable = (item) => {
+  if (!priceList[item]) { throw 'Sorry this item is currently unavailable'; }
+};
+
 const _scanItem = (item) => {
+  _checkItemIsAvailable(item);
   _basket.push([item, _fetchItemPrice(item)]);
 };
 
@@ -37,5 +42,6 @@ module.exports = {
   fetchItemPrice: _fetchItemPrice,
   calculateTax: _calculateTax,
   calculateChange: _calculateChange,
-  calculateTotal: _calculateTotal
+  calculateTotal: _calculateTotal,
+  checkItemIsAvailable: _checkItemIsAvailable
 };

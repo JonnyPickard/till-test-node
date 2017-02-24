@@ -6,7 +6,7 @@ const _fivePercentOffOverFifty = (total) => {
 
 const _tenPercentMuffinDiscount = (basket) => {
   return basket.map((item) => {
-    return /Muffin/.test(x[0]) ?
+    return /Muffin/.test(item[0]) ?
       [item[0], _twoDP(item[1] * 0.9)] : [item[0], item[1]];
   });
 };
