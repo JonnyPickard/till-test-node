@@ -4,7 +4,8 @@
   "description": "Till tech test written with nodeJS",
   "main": "index.js",
   "scripts": {
-    "test": "tape ./tests/**/*.js | tap-spec; tape ./tests/**/*.js | tap-nyan"
+    "test": "tape ./tests/model/*.js | tap-spec; tape ./tests/model/*.js | tap-nyan;",
+    "api-test": "tape ./tests/api/*.js | tap-spec"
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +16,7 @@
     "tape": "^4.6.3"
   },
   "dependencies": {
+    "body-parser": "^1.16.1",
     "express": "^4.14.1"
   }
 }

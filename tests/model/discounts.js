@@ -1,5 +1,5 @@
 const test = require('tape');
-const discounts = require('../app/discounts.js');
+const discounts = require('../../app/discounts.js');
 
 test('discounts 5% if the price is greater than 50', (t) => {
   const totalBefore = 55;

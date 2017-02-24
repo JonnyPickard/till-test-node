@@ -1,5 +1,5 @@
 const test = require('tape');
-const till = require('../app/till.js');
+const till = require('../../app/till.js');
 
 test('scan item', (t) => {
   const item = 'Cafe Latte';

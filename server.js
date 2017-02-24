@@ -2,13 +2,19 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 const till = require('./app/till');
+const bodyParser = require('body-parser');
 
-app.post('/till/scan-item', (req, res) =>{
+app.use(bodyParser.json());
 
+app.post('/till/scan-item', (req, res, next) =>{
+  const item = req.body.item;
+  till.scanItem(item);
+  res.send(till.basket);
 });
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log('Express app listening on port', port);
+  server.close(() => { console.log('Closing express app'); });
 });
 
-module.exports = app;
+module.exports = server;

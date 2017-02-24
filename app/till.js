@@ -15,6 +15,7 @@ const _checkItemIsAvailable = (item) => {
 const _scanItem = (item) => {
   _checkItemIsAvailable(item);
   _basket.push([item, _fetchItemPrice(item)]);
+  return _basket;
 };
 
 const _fetchItemPrice = (item) => {
