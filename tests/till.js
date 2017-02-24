@@ -1,30 +1,31 @@
 const test = require('tape');
 const till = require('../app/till.js');
 
-test('calculate base total given the order', (t) => {
-  const order = ['Cafe Latte', 'Cafe Latte',
-                 'Blueberry Muffin', 'Choc Mudcake'];
-
-  const runningTotal = till.calculateBasePrice(order);
-  const expectedPrice = 19.95;
-
-  t.equal(runningTotal, expectedPrice);
-  t.end();
-});
-
 test('scan item', (t) => {
   const item = 'Cafe Latte';
 
   till.scanItem(item);
 
-  const actualBasket = till.basket[0];
-  const expectedBasket = 'Cafe Latte';
+  const actualBasketItem = till.basket[0][0];
+  const actualBasketPrice = till.basket[0][1];
 
-  t.equal(actualBasket, expectedBasket);
+  const expectedBasketItem = 'Cafe Latte';
+  const expectedBasketPrice = 4.75;
+
+  t.equal(actualBasketItem, expectedBasketItem);
+  t.equal(actualBasketPrice, expectedBasketPrice);
   t.end();
 });
 
-//
+test('fetch item price', (t) => {
+  const item = 'Cafe Latte';
+  const expectedPrice = 4.75;
+
+  const actualPrice = till.fetchItemPrice(item);
+
+  t.equal(actualPrice, expectedPrice);
+  t.end();
+});
 
 test('calculates tax given the running total', (t) => {
   const runningTotal = 20;
@@ -38,10 +39,14 @@ test('calculates tax given the running total', (t) => {
 });
 
 test('calculates the total given the order', (t) => {
-  const order = ['Cafe Latte', 'Cafe Latte',
-                 'Blueberry Muffin', 'Choc Mudcake'];
+  const order = [['Cafe Latte', 4.75], ['Cafe Latte', 4.75],
+                  ['Cafe Latte', 4.75], ['Cafe Latte', 4.75],
+                  ['Cafe Latte', 4.75], ['Cafe Latte', 4.75],
+                  ['Cafe Latte', 4.75], ['Cafe Latte', 4.75],
+                  ['Cafe Latte', 4.75],
+                  ['Blueberry Muffin', 4.05], ['Choc Mudcake', 6.40]];
 
-  const expectedTotal = 18.23;
+  const expectedTotal = 45.83;
   const actualTotal = till.calculateTotal(order);
 
   t.equal(actualTotal, expectedTotal);
