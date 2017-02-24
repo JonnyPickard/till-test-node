@@ -6,10 +6,13 @@ const bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
 
-app.post('/till/scan-item', (req, res, next) =>{
+app.post('/till/scan-item', (req, res) =>{
   const item = req.body.item;
-  till.scanItem(item);
-  res.send(till.basket);
+  res.send(till.scanItem(item));
+});
+
+app.get('/till/checkout', (req, res) =>{
+  res.send({total: till.calculateTotal()});
 });
 
 const server = app.listen(port, () => {

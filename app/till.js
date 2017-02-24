@@ -27,6 +27,7 @@ const _calculateTax = (runningTotal, tax = 8.64) => {
 };
 
 const _calculateTotal = (basket) => {
+  if (!basket) { return 0; }
   const discountedTotal = calculateTotalDiscount(basket);
 
   return _calculateTax(discountedTotal);
