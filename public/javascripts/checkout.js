@@ -23,7 +23,7 @@
 
   function _displayTotal(json) {
     checkoutTotal.innerHTML =
-      '<h1>Total: ' + json[1] + '</h1>';
+      '<h1>Total: £' + json[1] + '</h1>';
   }
 
   function _listItem(item, price, id) {
