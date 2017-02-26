@@ -1,8 +1,9 @@
+process.env.NODE_ENV = 'test';
 const test = require('tape');
 const request = require('supertest');
 const app = require('../../server.js');
 
-test('GET /till/checkout', (t) => {
+test('GET "/till/checkout"', (t) => {
   request(app)
     .get('/till/checkout')
     .expect(200)
@@ -16,7 +17,19 @@ test('GET /till/checkout', (t) => {
     });
 });
 
-test('POST /till/scan-item', (t) => {
+test('GET "/" should render index.html', (t) => {
+  request(app)
+    .get('/')
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .end((err, res) => {
+      if (err) { throw err; }
+
+      t.end();
+    });
+});
+
+test('POST "/till/scan-item"', (t) => {
   const item = {item: 'Blueberry Muffin'};
   request(app)
   .post('/till/scan-item')
