@@ -10,11 +10,15 @@
 </head>
 <body>
   <div class="container">
-    <h1>Checkout</h1>
+    <h1>Till</h1>
     <hr />
 
+    <div id="checkoutButton"></div>
+
+    <br />
+
     <form enctype="multipart/form-data" id="tillForm" name="tillForm" action="" method="post">
-      <select class="form-control" name="item">
+      <select id="itemList" class="form-control" name="item">
         <option value="Cafe Latte">Cafe Latte: £4.75</option>
         <option value="Flat White">Flat White: £4.75</option>
         <option value="Cappucino">Cappucino: £3.85</option>
@@ -37,9 +41,7 @@
 
     <hr />
 
-    <ul class="list-group" id="basketList">
-
-    </ul>
+    <ul class="list-group" id="basketList"></ul>
 
   </div>
   <script src="./javascripts/index.js"></script>

@@ -10,7 +10,7 @@ test('GET "/till/checkout"', (t) => {
     .expect('Content-Type', /json/)
     .end((err, res) => {
       if (err) { throw err; }
-      let actualResponse = res.body.total;
+      let actualResponse = res.body;
       let expectedResponse = 0;
       t.equal(actualResponse[1], expectedResponse);
       t.end();
@@ -20,6 +20,18 @@ test('GET "/till/checkout"', (t) => {
 test('GET "/" should render index.html', (t) => {
   request(app)
     .get('/')
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .end((err, res) => {
+      if (err) { throw err; }
+
+      t.end();
+    });
+});
+
+test('GET "/checkout" should render server.html', (t) => {
+  request(app)
+    .get('/checkout')
     .expect(200)
     .expect('Content-Type', /html/)
     .end((err, res) => {

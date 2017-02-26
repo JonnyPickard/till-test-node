@@ -15,17 +15,21 @@ app.use(morgan('dev'));
 app.post('/till/scan-item', upload.fields([]), (req, res) =>{
   const item = req.body.item;
   const basket = till.scanItem(item);
-  console.log(basket);
   res.setHeader('Content-Type', 'application/json');
   res.send(JSON.stringify(basket));
 });
 
 app.get('/till/checkout', (req, res) =>{
-  res.send({total: till.checkout()});
+  res.setHeader('Content-Type', 'application/json');
+  res.send(JSON.stringify(till.checkout()));
 });
 
 app.get('/', (req, res) =>{
   res.sendFile('public/views/index.html', {root: __dirname });
+});
+
+app.get('/checkout', (req, res) =>{
+  res.sendFile('public/views/checkout.html', {root: __dirname });
 });
 
 const server = app.listen(port, () => {
