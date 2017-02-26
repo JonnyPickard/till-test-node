@@ -113,3 +113,21 @@ test('_calculateChange,' +
   t.equal(actualChange, expectedChange);
   t.end();
 });
+
+test('_pay,' +
+     'processes the payment & resets the till,' +
+     'should return correct change', (t) => {
+
+  const finalTotal = 4.34;
+  const moneyGiven = 10;
+
+  const expectedChange = 5.66;
+  const actualChange = till.pay(moneyGiven, finalTotal);
+
+  t.equal(actualChange[1], 0, 'Till total should be reset');
+  t.equal(actualChange[2][0], undefined, 'Till basket should be reset');
+
+
+  t.equal(actualChange[0], expectedChange);
+  t.end();
+});

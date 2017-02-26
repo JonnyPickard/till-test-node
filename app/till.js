@@ -3,6 +3,7 @@ const { priceList } = require('./helpers.js');
 const { calculateTotalDiscount } = require('./discounts');
 
 var _total = 0;
+var _finalTotal = 0;
 var _basket = [];
 
 const _scanItem = (item) => {
@@ -33,6 +34,7 @@ const _calculateTotal = (basket) => {
   if (!basket) { return 0; }
   const discountedTotal = calculateTotalDiscount(basket);
   const total = _calculateTax(discountedTotal);
+  _finalTotal = total;
 
   return total;
 };
@@ -46,9 +48,18 @@ const _calculateChange = (total, moneyGiven) => {
   return moneyGiven - total;
 };
 
+const _pay = function(moneyGiven, total = _finalTotal) {
+  const change = _calculateChange(total, moneyGiven);
+  _total = 0;
+  _finalTotal = 0;
+  _basket = [];
+  return [change, _finalTotal, _basket, 'Payment successfull'];
+};
+
 module.exports = {
   total: _total,
   basket: _basket,
+  pay: _pay,
   scanItem: _scanItem,
   fetchItemPrice: _fetchItemPrice,
   calculateTax: _calculateTax,

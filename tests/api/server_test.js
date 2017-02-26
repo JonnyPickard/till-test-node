@@ -56,3 +56,19 @@ test('POST "/till/scan-item"', (t) => {
     t.end();
   });
 });
+
+test('POST "/till/pay"', (t) => {
+  const moneyGiven = {moneyGiven: 10};
+  request(app)
+  .post('/till/pay')
+  .send(moneyGiven)
+  .expect(200)
+  .expect('Content-Type', /json/)
+  .end((err, res) => {
+    if (err) { throw err; }
+    let actualResponse = res.body;
+    let expectedResponse = 'Payment successfull';
+    t.equal(actualResponse[3], expectedResponse);
+    t.end();
+  });
+});
