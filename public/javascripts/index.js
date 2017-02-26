@@ -37,4 +37,11 @@
       '<a href="/checkout" id="checkout" class="btn btn-default">Checkout</a>';
     }
   }
+
+  //Prevent enter key from submitting the form like normal
+  $('#tillForm').submit(function(e){
+    e.preventDefault();
+    goButton();
+    return false;
+  });
 })();

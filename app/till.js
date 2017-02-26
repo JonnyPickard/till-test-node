@@ -45,7 +45,9 @@ const _checkout = function(basket = _basket) {
 };
 
 const _calculateChange = (total, moneyGiven) => {
-  return moneyGiven - total;
+  const change = moneyGiven - total;
+  if (change < 0) { throw 'Payment invalid, more money required'; }
+  return change;
 };
 
 const _pay = function(moneyGiven, total = _finalTotal) {

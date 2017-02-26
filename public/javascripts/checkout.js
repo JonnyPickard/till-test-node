@@ -3,6 +3,7 @@
   var checkoutTotal  = document.getElementById('checkoutTotal');
   var payBtn         = document.getElementById('payBtn');
   var payForm        = document.getElementById('payForm');
+  var payPage        = document.getElementById('payPage');
 
   (function() {
     fetch('/till/checkout', {
@@ -41,8 +42,24 @@
       body: form
     }).then(function(res) {
       return res.json().then(function(json) {
-        console.log(json);
+        _renderSuccessTemplate(json);
       });
     });
   };
+
+  function _renderSuccessTemplate(json) {
+    payPage.innerHTML =
+    '<h1>' + json[3] + '</h1>' +
+    '<hr />' +
+    '<h1>Change: £' + json[0] + '</h1>' +
+    '<br />' +
+    '<a href="/"><h3>Shop again?</h3></a>';
+  }
+
+  //Prevent enter key from submitting the form like normal
+  $('#payForm').submit(function(e){
+    e.preventDefault();
+    goButton();
+    return false;
+  });
 })();
