@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "tape ./tests/model/*.js | tap-spec; tape ./tests/model/*.js | tap-nyan;",
-    "api-test": "tape ./tests/api/*.js | tap-spec"
+    "api-test": "tape ./tests/api/**/*.js | tap-spec"
   },
   "author": "",
   "license": "ISC",

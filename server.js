@@ -8,11 +8,12 @@ app.use(bodyParser.json());
 
 app.post('/till/scan-item', (req, res) =>{
   const item = req.body.item;
-  res.send(till.scanItem(item));
+  const basket = till.scanItem(item);
+  res.send(basket);
 });
 
 app.get('/till/checkout', (req, res) =>{
-  res.send({total: till.calculateTotal()});
+  res.send({total: till.checkout()});
 });
 
 const server = app.listen(port, () => {

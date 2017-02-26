@@ -1,21 +1,24 @@
-const fs = require('fs');
-const content = fs.readFileSync('./app/hipstercoffee.json');
-const jSONContent = JSON.parse(content);
-const priceList = jSONContent[0].prices[0];
 const { _twoDP } = require('./helpers.js');
+const { priceList } = require('./helpers.js');
 const { calculateTotalDiscount } = require('./discounts');
 
 var _total = 0;
 var _basket = [];
 
-const _checkItemIsAvailable = (item) => {
-  if (!priceList[item]) { throw 'Sorry this item is currently unavailable'; }
-};
-
 const _scanItem = (item) => {
   _checkItemIsAvailable(item);
   _basket.push([item, _fetchItemPrice(item)]);
-  return _basket;
+  return [_basket, _calculateRunningTotal(_basket)];
+};
+
+const _calculateRunningTotal = (basket) => {
+  return basket.reduce((total, price)=> {
+    return total + price[1];
+  }, 0);
+};
+
+const _checkItemIsAvailable = (item) => {
+  if (!priceList[item]) { throw 'Sorry this item is currently unavailable'; }
 };
 
 const _fetchItemPrice = (item) => {
@@ -29,8 +32,14 @@ const _calculateTax = (runningTotal, tax = 8.64) => {
 const _calculateTotal = (basket) => {
   if (!basket) { return 0; }
   const discountedTotal = calculateTotalDiscount(basket);
+  const total = _calculateTax(discountedTotal);
 
-  return _calculateTax(discountedTotal);
+  return total;
+};
+
+const _checkout = function(basket = _basket) {
+  const total = _calculateTotal(basket);
+  return [basket, total];
 };
 
 const _calculateChange = (total, moneyGiven) => {
@@ -45,5 +54,7 @@ module.exports = {
   calculateTax: _calculateTax,
   calculateChange: _calculateChange,
   calculateTotal: _calculateTotal,
-  checkItemIsAvailable: _checkItemIsAvailable
+  checkItemIsAvailable: _checkItemIsAvailable,
+  checkout: _checkout,
+  calculateRunningTotal: _calculateRunningTotal
 };

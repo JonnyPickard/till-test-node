@@ -1,7 +1,8 @@
 const test = require('tape');
 const discounts = require('../../app/discounts.js');
 
-test('discounts 5% if the price is greater than 50', (t) => {
+test('_fivePercentOffOverFifty, ' +
+     'discounts 5% if the price is greater than 50', (t) => {
   const totalBefore = 55;
 
   const expectedTotal = 52.25;
@@ -11,7 +12,8 @@ test('discounts 5% if the price is greater than 50', (t) => {
   t.end();
 });
 
-test('discount 5% fails if the price is less than 50', (t) => {
+test('_fivePercentOffOverFifty, ' +
+     'discount 5% fails if the price is less than 50', (t) => {
   const totalBefore = 45;
 
   const expectedTotal = 52.25;
@@ -21,7 +23,8 @@ test('discount 5% fails if the price is less than 50', (t) => {
   t.end();
 });
 
-test('discounts 10% if the item is a muffin', (t) => {
+test('_tenPercentMuffinDiscount, ' +
+     'discounts 10% if the item is a muffin', (t) => {
   const basket = [['Blueberry Muffin', 4.05]];
 
   const expectedPrice = 3.65;
@@ -31,7 +34,8 @@ test('discounts 10% if the item is a muffin', (t) => {
   t.end();
 });
 
-test('discount 10% fails if the item is not a muffin', (t) => {
+test('_tenPercentMuffinDiscount, ' +
+     ' discount 10% fails if the item is not a muffin', (t) => {
   const basket = [['Blueberry uffin', 4.05]];
 
   const expectedPrice = 4.05;
@@ -41,7 +45,7 @@ test('discount 10% fails if the item is not a muffin', (t) => {
   t.end();
 });
 
-test('calculates running total', (t) => {
+test('_calculateRunningTotal, calculates running total', (t) => {
   const basket = [['Cafe Latte', 4.75], ['Cafe Latte', 4.75],
                   ['Cafe Latte', 4.75], ['Cafe Latte', 4.75],
                   ['Cafe Latte', 4.75], ['Cafe Latte', 4.75],
@@ -56,7 +60,7 @@ test('calculates running total', (t) => {
   t.end();
 });
 
-test('calculates total discount', (t) => {
+test('_calculateTotalDiscount, calculates total discount', (t) => {
   const basket = [['Cafe Latte', 4.75], ['Cafe Latte', 4.75],
                   ['Cafe Latte', 4.75], ['Cafe Latte', 4.75],
                   ['Cafe Latte', 4.75], ['Cafe Latte', 4.75],

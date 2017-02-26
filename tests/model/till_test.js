@@ -1,30 +1,52 @@
 const test = require('tape');
 const till = require('../../app/till.js');
 
-test('scan item', (t) => {
+test('_scanItem, should return [[basket], runningTotal]', (t) => {
   const item = 'Cafe Latte';
 
   till.scanItem(item);
+  const actualArray = till.scanItem(item);
+  const expectedArray = [[['Cafe Latte', 4.75], ['Cafe Latte', 4.75]], 9.5];
 
   const actualBasketItem = till.basket[0][0];
   const actualBasketPrice = till.basket[0][1];
 
   const expectedBasketItem = 'Cafe Latte';
-  const expectedBasketPrice = 4.75;
+  const expectedBasketItemPrice = 4.75;
 
-  t.equal(actualBasketItem, expectedBasketItem);
-  t.equal(actualBasketPrice, expectedBasketPrice);
+  t.equal(actualBasketItem, expectedBasketItem,
+     'Should add the correct item to the basket');
+  t.equal(actualBasketPrice, expectedBasketItemPrice,
+      'Should add the items price to the basket');
+  t.equal(actualArray[1], expectedArray[1],
+      'Should correctly return the running total');
+
   t.end();
 });
 
-test('check item is available', (t) => {
+test('_calculateRunningTotal, calculates running total', (t) => {
+  const basket = [['Cafe Latte', 4.75], ['Cafe Latte', 4.75],
+                  ['Cafe Latte', 4.75], ['Cafe Latte', 4.75],
+                  ['Cafe Latte', 4.75], ['Cafe Latte', 4.75],
+                  ['Cafe Latte', 4.75], ['Cafe Latte', 4.75],
+                  ['Cafe Latte', 4.75],
+                  ['Blueberry Muffin', 3.65], ['Choc Mudcake', 6.40]];
+
+  const expectedTotal = 52.8;
+  const actualTotal = till.calculateRunningTotal(basket);
+
+  t.equal(actualTotal, expectedTotal);
+  t.end();
+});
+
+test('_checkItemIsAvailable, checks that the item is available', (t) => {
   const item = 'Cafe Lat';
 
   t.throws(() => { till.checkItemIsAvailable(item); });
   t.end();
 });
 
-test('fetch item price', (t) => {
+test('_fetchItemPrice, gets the item price', (t) => {
   const item = 'Cafe Latte';
   const expectedPrice = 4.75;
 
@@ -34,7 +56,7 @@ test('fetch item price', (t) => {
   t.end();
 });
 
-test('calculates tax given the running total', (t) => {
+test('_calculateTax, calculates tax given the running total', (t) => {
   const runningTotal = 20;
   const tax = 8.64;
 
@@ -45,7 +67,7 @@ test('calculates tax given the running total', (t) => {
   t.end();
 });
 
-test('calculates the total given the order', (t) => {
+test('_calculateTotal, calculates the total given the order', (t) => {
   const order = [['Cafe Latte', 4.75], ['Cafe Latte', 4.75],
                   ['Cafe Latte', 4.75], ['Cafe Latte', 4.75],
                   ['Cafe Latte', 4.75], ['Cafe Latte', 4.75],
@@ -60,7 +82,28 @@ test('calculates the total given the order', (t) => {
   t.end();
 });
 
-test('calculates change correctly given a users money', (t) => {
+test('_checkout, returns [basket, total]', (t) => {
+  const order = [['Cafe Latte', 4.75], ['Cafe Latte', 4.75],
+                  ['Cafe Latte', 4.75], ['Cafe Latte', 4.75],
+                  ['Cafe Latte', 4.75], ['Cafe Latte', 4.75],
+                  ['Cafe Latte', 4.75], ['Cafe Latte', 4.75],
+                  ['Cafe Latte', 4.75],
+                  ['Blueberry Muffin', 4.05], ['Choc Mudcake', 6.40]];
+
+  const expectedTotal = 45.83;
+  const expectedBasketItem = 'Cafe Latte';
+  const actualTotal = till.checkout(order);
+
+  t.equal(actualTotal[1], expectedTotal,
+    'Should correctly return the final total');
+  t.equal(actualTotal[0][0][0], expectedBasketItem,
+    'Should correctly return the basket');
+  t.end();
+});
+
+test('_calculateChange,' +
+     'calculates change correctly given a users money', (t) => {
+
   const moneyGiven = 10;
   const total = 7.30;
 
