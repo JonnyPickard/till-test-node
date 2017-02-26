@@ -1,6 +1,8 @@
 (function() {
   var basketList     = document.getElementById('basketList');
   var checkoutTotal  = document.getElementById('checkoutTotal');
+  var payBtn         = document.getElementById('payBtn');
+  var payForm        = document.getElementById('payForm');
 
   (function() {
     fetch('/till/checkout', {
@@ -31,4 +33,16 @@
               item + ': £' + price +
            '</li> ';
   }
+
+  payBtn.onclick = function pay() {
+    var form = new FormData(payForm);
+    fetch('/till/pay', {
+      method: 'POST',
+      body: form
+    }).then(function(res) {
+      return res.json().then(function(json) {
+        console.log(json);
+      });
+    });
+  };
 })();

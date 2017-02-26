@@ -19,7 +19,7 @@ app.post('/till/scan-item', upload.fields([]), (req, res) =>{
   res.send(JSON.stringify(basket));
 });
 
-app.post('/till/pay', (req, res) => {
+app.post('/till/pay', upload.fields([]), (req, res) => {
   const moneyGiven = req.body.moneyGiven;
   const paymentConfirmation = till.pay(moneyGiven);
   res.setHeader('Content-Type', 'application/json');
