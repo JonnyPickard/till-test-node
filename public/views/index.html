@@ -1,9 +1,47 @@
 <!DOCTYPE html>
 <head>
-
+  <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
 </head>
 <body>
-  <h1>Checkout</h1>
+  <div class="container">
+    <h1>Checkout</h1>
+    <hr />
+
+    <form enctype="multipart/form-data" id="tillForm" name="tillForm" action="" method="post">
+      <select class="form-control" name="item">
+        <option value="Cafe Latte">Cafe Latte: £4.75</option>
+        <option value="Flat White">Flat White: £4.75</option>
+        <option value="Cappucino">Cappucino: £3.85</option>
+        <option value="Single Espresso">Single Espresso: £2.05</option>
+        <option value="Double Espresso">Double Espresso: £3.75</option>
+        <option value="Americano">Americano: £3.75</option>
+        <option value="Cortado">Cortado: £4.55</option>
+        <option value="Tea">Tea: £3.65</option>
+        <option value="Choc Mudcake">Choc Mudcake: £6.40</option>
+        <option value="Choc Mousse">Choc Mousse: £8.20</option>
+        <option value="Affogato">Affogato: £14.80</option>
+        <option value="Tiramisu">Tiramisu: £11.40</option>
+        <option value="Blueberry Muffin">Blueberry Muffin: £4.05</option>
+        <option value="Chocolate Chip Muffin">Chocolate Chip Muffin: £4.05</option>
+        <option value="Muffin Of The Day">Muffin Of The Day: £4.55</option>
+      </select>
+      <br />
+      <input type="button" class="btn btn-default" value="Add item" id="addItem" name="submit">
+    </form>
+
+    <hr />
+
+    <ul class="list-group" id="basketList">
+
+    </ul>
+
+  </div>
   <script src="./javascripts/index.js"></script>
 </body>
 </html>
