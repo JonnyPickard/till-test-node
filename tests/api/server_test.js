@@ -1,4 +1,5 @@
 process.env.NODE_ENV = 'test';
+process.env.PORT = 3333;
 const test = require('tape');
 const request = require('supertest');
 const app = require('../../server.js');
