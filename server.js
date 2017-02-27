@@ -9,8 +9,6 @@ const upload         = multer();
 const sassMiddleware = require('node-sass-middleware');
 const path           = require('path');
 
-console.log(path.join(__dirname, 'public/stylesheets/sass/'));
-
 app.use(sassMiddleware({
   src: path.join(__dirname, 'public/stylesheets/sass'),
   dest: path.join(__dirname, 'public/stylesheets/'),
