@@ -30,13 +30,14 @@ const _calculateTax = (runningTotal, tax = 8.64) => {
   return _twoDP(runningTotal * (1 - tax / 100));
 };
 
-const _calculateTotal = (basket) => {
-  if (!basket) { return 0; }
-  const discountedTotal = calculateTotalDiscount(basket);
-  const total = _calculateTax(discountedTotal);
-  _finalTotal = total;
+const _calculateTotal = function(basket,
+  _calculateTotalDiscount = calculateTotalDiscount) {
+    if (!basket) { return 0; }
+    const discountedTotal = _calculateTotalDiscount(basket);
+    const total = _calculateTax(discountedTotal);
+    _finalTotal = total;
 
-  return total;
+    return total;
 };
 
 const _checkout = function(basket = _basket) {

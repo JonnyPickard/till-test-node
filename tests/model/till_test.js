@@ -76,7 +76,7 @@ test('_calculateTotal, calculates the total given the order', (t) => {
                   ['Blueberry Muffin', 4.05], ['Choc Mudcake', 6.40]];
 
   const expectedTotal = 45.83;
-  const actualTotal = till.calculateTotal(order);
+  const actualTotal = till.calculateTotal(order, () => {return 50.16;});
 
   t.equal(actualTotal, expectedTotal);
   t.end();
