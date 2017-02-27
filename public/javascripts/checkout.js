@@ -52,7 +52,7 @@
     '<h1>' + json[3] + '</h1>' +
     '<hr />' +
     '<h1>Change: £' + json[0] + '</h1>' +
-    '<br />' +
+    '<hr />' +
     '<a href="/"><h3>Shop again?</h3></a>';
   }
 

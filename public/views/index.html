@@ -3,12 +3,19 @@
   <script src="./javascripts/jquery/jquery-3.1.1.min.js"></script>
   <script src="./javascripts/bootstrap/bootstrap.min.js"></script>
   <link href="./stylesheets/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Exo:200|Josefin+Slab" rel="stylesheet">
   <link href="/stylesheets/style.css" rel="stylesheet">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
 </head>
 <body>
-  <div class="container">
-    <h1>Till</h1>
+  <nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+      <a class="navbar-brand">Till Test</a>
+    </div>
+  </nav>
+
+  <div class="page order-page container">
+    <h1>Place Order</h1>
     <hr />
 
     <div id="checkoutButton"></div>
@@ -42,6 +49,13 @@
     <ul class="list-group" id="basketList"></ul>
 
   </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="pull-right text-muted"><h4 class="footer-text">&copy; 2017 Jonny Pickard Till Test</h4></p>
+    </div>
+  </footer>
+
   <script src="./javascripts/index.js"></script>
 </body>
 </html>

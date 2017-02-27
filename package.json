@@ -4,9 +4,9 @@
   "description": "Till tech test written with nodeJS",
   "main": "index.js",
   "scripts": {
-    "test": "tape ./tests/model/*.js | tap-spec; tape ./tests/model/*.js | tap-nyan;",
-    "api-test": "tape ./tests/api/**/*.js | tap-spec",
-    "feature-test": "codeceptjs run --steps"
+    "test": "node_modules/.bin/tape ./tests/model/*.js | tap-spec; node_modules/.bin/tape ./tests/model/*.js | tap-nyan;",
+    "api-test": "node_modules/.bin/tape ./tests/api/**/*.js | tap-spec",
+    "feature-test": "node_modules/.bin/codeceptjs run --steps"
   },
   "author": "",
   "license": "ISC",
