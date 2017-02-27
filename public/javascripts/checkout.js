@@ -4,6 +4,8 @@
   var payBtn         = document.getElementById('payBtn');
   var payForm        = document.getElementById('payForm');
   var payPage        = document.getElementById('payPage');
+  var _total         = 0;
+  var paymentErr     = document.getElementById('errorMsg');
 
   (function() {
     fetch('/till/checkout', {
@@ -25,6 +27,7 @@
   }
 
   function _displayTotal(json) {
+    _total = json[1];
     checkoutTotal.innerHTML =
       '<h1>Total: £' + json[1] + '</h1>';
   }
@@ -35,7 +38,14 @@
            '</li> ';
   }
 
+  function _checkForPaymentError() {
+    if (payForm.elements[0].value < _total) {
+      paymentErr.innerHTML = '<h2>Insufficient payment provided</h2>';
+    }
+  }
+
   payBtn.onclick = function pay() {
+    _checkForPaymentError();
     var form = new FormData(payForm);
     fetch('/till/pay', {
       method: 'POST',

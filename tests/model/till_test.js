@@ -60,7 +60,7 @@ test('_calculateTax, calculates tax given the running total', (t) => {
   const runningTotal = 20;
   const tax = 8.64;
 
-  const expectedTotal = 18.27;
+  const expectedTotal = 21.73;
   const actualTotal = till.calculateTax(runningTotal, tax);
 
   t.equal(actualTotal, expectedTotal);
@@ -75,7 +75,7 @@ test('_calculateTotal, calculates the total given the order', (t) => {
                  ['Cafe Latte', 4.75],
                  ['Blueberry Muffin', 4.05], ['Choc Mudcake', 6.40]];
 
-  const expectedTotal = 45.83;
+  const expectedTotal = 54.49;
   const actualTotal = till.calculateTotal(order, () => {return 50.16;});
 
   t.equal(actualTotal, expectedTotal);
@@ -90,7 +90,7 @@ test('_checkout, returns [basket, total]', (t) => {
                  ['Cafe Latte', 4.75],
                  ['Blueberry Muffin', 4.05], ['Choc Mudcake', 6.40]];
 
-  const expectedTotal = 45.83;
+  const expectedTotal = 54.49;
   const expectedBasketItem = 'Cafe Latte';
   const actualTotal = till.checkout(order);
 
