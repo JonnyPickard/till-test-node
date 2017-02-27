@@ -1,7 +1,7 @@
 const { _twoDP } = require('./helpers.js');
 
 const _fivePercentOffOverFifty = (total) => {
-  return (total > 50) ? _twoDP(total * 0.95) : total;
+  return (total >= 50) ? _twoDP(total * 0.95) : total;
 };
 
 const _tenPercentMuffinDiscount = (basket) => {

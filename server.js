@@ -1,11 +1,11 @@
-const express = require('express');
-const app = express();
-const port = process.env.PORT || 3000;
-const till = require('./app/till');
+const express    = require('express');
+const app        = express();
+const port       = process.env.PORT || 3000;
+const till       = require('./app/till');
 const bodyParser = require('body-parser');
-const morgan = require('morgan');
-const multer = require('multer');
-const upload = multer();
+const morgan     = require('morgan');
+const multer     = require('multer');
+const upload     = multer();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -19,7 +19,7 @@ app.post('/till/scan-item', upload.fields([]), (req, res) =>{
   res.send(JSON.stringify(basket));
 });
 
-app.post('/till/pay', upload.fields([]), (req, res, err) => {
+app.post('/till/pay', upload.fields([]), (req, res) => {
   const moneyGiven = req.body.moneyGiven;
   const paymentConfirmation = till.pay(moneyGiven);
   res.setHeader('Content-Type', 'application/json');
@@ -27,8 +27,9 @@ app.post('/till/pay', upload.fields([]), (req, res, err) => {
 });
 
 app.get('/till/checkout', (req, res) =>{
+  const checkoutBasket = till.checkout();
   res.setHeader('Content-Type', 'application/json');
-  res.send(JSON.stringify(till.checkout()));
+  res.send(JSON.stringify(checkoutBasket));
 });
 
 app.get('/', (req, res) =>{
