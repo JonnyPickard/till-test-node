@@ -12,7 +12,8 @@ test('GET "/till/checkout"', (t) => {
       if (err) { throw err; }
       let actualResponse = res.body;
       let expectedResponse = 0;
-      t.equal(actualResponse[1], expectedResponse);
+      t.equal(actualResponse[1], expectedResponse,
+        'Should return the correct response');
       t.end();
     });
 });
@@ -52,7 +53,8 @@ test('POST "/till/scan-item"', (t) => {
     if (err) { throw err; }
     let actualResponse = res.body;
     let expectedResponse = 'Blueberry Muffin';
-    t.equal(actualResponse[0][0][0], expectedResponse);
+    t.equal(actualResponse[0][0][0], expectedResponse,
+       'Should return the correct response');
     t.end();
   });
 });
@@ -68,7 +70,8 @@ test('POST "/till/pay"', (t) => {
     if (err) { throw err; }
     let actualResponse = res.body;
     let expectedResponse = 'Payment successfull';
-    t.equal(actualResponse[3], expectedResponse);
+    t.equal(actualResponse[3], expectedResponse,
+      'Should return the correct response');
     t.end();
   });
 });

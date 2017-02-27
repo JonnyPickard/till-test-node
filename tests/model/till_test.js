@@ -69,11 +69,11 @@ test('_calculateTax, calculates tax given the running total', (t) => {
 
 test('_calculateTotal, calculates the total given the order', (t) => {
   const order = [['Cafe Latte', 4.75], ['Cafe Latte', 4.75],
-                  ['Cafe Latte', 4.75], ['Cafe Latte', 4.75],
-                  ['Cafe Latte', 4.75], ['Cafe Latte', 4.75],
-                  ['Cafe Latte', 4.75], ['Cafe Latte', 4.75],
-                  ['Cafe Latte', 4.75],
-                  ['Blueberry Muffin', 4.05], ['Choc Mudcake', 6.40]];
+                 ['Cafe Latte', 4.75], ['Cafe Latte', 4.75],
+                 ['Cafe Latte', 4.75], ['Cafe Latte', 4.75],
+                 ['Cafe Latte', 4.75], ['Cafe Latte', 4.75],
+                 ['Cafe Latte', 4.75],
+                 ['Blueberry Muffin', 4.05], ['Choc Mudcake', 6.40]];
 
   const expectedTotal = 45.83;
   const actualTotal = till.calculateTotal(order, () => {return 50.16;});
@@ -84,11 +84,11 @@ test('_calculateTotal, calculates the total given the order', (t) => {
 
 test('_checkout, returns [basket, total]', (t) => {
   const order = [['Cafe Latte', 4.75], ['Cafe Latte', 4.75],
-                  ['Cafe Latte', 4.75], ['Cafe Latte', 4.75],
-                  ['Cafe Latte', 4.75], ['Cafe Latte', 4.75],
-                  ['Cafe Latte', 4.75], ['Cafe Latte', 4.75],
-                  ['Cafe Latte', 4.75],
-                  ['Blueberry Muffin', 4.05], ['Choc Mudcake', 6.40]];
+                 ['Cafe Latte', 4.75], ['Cafe Latte', 4.75],
+                 ['Cafe Latte', 4.75], ['Cafe Latte', 4.75],
+                 ['Cafe Latte', 4.75], ['Cafe Latte', 4.75],
+                 ['Cafe Latte', 4.75],
+                 ['Blueberry Muffin', 4.05], ['Choc Mudcake', 6.40]];
 
   const expectedTotal = 45.83;
   const expectedBasketItem = 'Cafe Latte';

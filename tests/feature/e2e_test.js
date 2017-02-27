@@ -1,7 +1,7 @@
 // jshint ignore: start
-Feature('Select an item then go to /checkout');
+Feature('Select an item then go to /checkout and pay');
 
-Scenario('Test add item and visit /checkout', (I) => {
+Scenario('Test add item and visit /checkout then pay', (I) => {
   I.amOnPage('/');
   I.see('Till');
   I.dontSee('#checkoutButton');

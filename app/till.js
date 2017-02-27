@@ -56,7 +56,7 @@ const _pay = function(moneyGiven, total = _finalTotal) {
   _total = 0;
   _finalTotal = 0;
   _basket = [];
-  return [change, _finalTotal, _basket, 'Payment successfull'];
+  return [_twoDP(change), _finalTotal, _basket, 'Payment successfull'];
 };
 
 module.exports = {
