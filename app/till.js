@@ -27,7 +27,7 @@ const _fetchItemPrice = (item) => {
 };
 
 const _calculateTax = (runningTotal, tax = 8.64) => {
-  return _twoDP(runningTotal * (1 - tax / 100));
+  return _twoDP(runningTotal + runningTotal * (8.64 / 100));
 };
 
 const _calculateTotal = function(basket,

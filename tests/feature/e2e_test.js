@@ -7,7 +7,7 @@ Scenario('Test add item and visit /checkout then pay', (I) => {
   I.dontSee('#checkoutButton');
   I.selectOption('#itemList', 'Cafe Latte');
   I.click('#addItem');
-  I.see('Cafe Latte', '#basketList');
+  I.see('Total: £4.75', '#runningTotal');
   I.click('#checkout');
   I.seeInCurrentUrl('/checkout');
   I.see('Total: ', '#checkoutTotal');

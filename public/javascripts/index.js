@@ -1,8 +1,9 @@
 (function() {
-  var addItemBtn  = document.getElementById('addItem');
-  var basketList  = document.getElementById('basketList');
-  var tillForm    = document.getElementById('tillForm');
-  var checkoutBtn = document.getElementById('checkoutButton');
+  var addItemBtn    = document.getElementById('addItem');
+  var basketList    = document.getElementById('basketList');
+  var tillForm      = document.getElementById('tillForm');
+  var checkoutBtn   = document.getElementById('checkoutButton');
+  var runningTotal  = document.getElementById('runningTotal');
 
   addItemBtn.onclick = function() {
     var form = new FormData(tillForm);
@@ -12,6 +13,7 @@
     }).then(function(res) {
       return res.json().then(function(json) {
         _printList(json);
+        _insertRunningTotal(json);
         _insertCheckoutButton();
       });
     });
@@ -36,6 +38,11 @@
       checkoutBtn.innerHTML =
       '<a href="/checkout" id="checkout" class="btn btn-default">Checkout</a>';
     }
+  }
+
+  function _insertRunningTotal(json) {
+    runningTotal.innerHTML =
+      '<h1>Total: £' + json[1] + '</h1>';
   }
 
   //Prevent enter key from submitting the form like normal
