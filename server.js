@@ -1,11 +1,24 @@
-const express    = require('express');
-const app        = express();
-const port       = process.env.PORT || 3000;
-const till       = require('./app/till');
-const bodyParser = require('body-parser');
-const morgan     = require('morgan');
-const multer     = require('multer');
-const upload     = multer();
+const express        = require('express');
+const app            = express();
+const port           = process.env.PORT || 3000;
+const till           = require('./app/till');
+const bodyParser     = require('body-parser');
+const morgan         = require('morgan');
+const multer         = require('multer');
+const upload         = multer();
+const sassMiddleware = require('node-sass-middleware');
+const path           = require('path');
+
+console.log(path.join(__dirname, 'public/stylesheets/sass/'));
+
+app.use(sassMiddleware({
+  src: path.join(__dirname, 'public/stylesheets/sass'),
+  dest: path.join(__dirname, 'public/stylesheets/'),
+  debug: true,
+  indentedSyntax: true,
+  outputStyle: 'compressed',
+  prefix: '/stylesheets'
+}));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

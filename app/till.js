@@ -2,9 +2,9 @@ const { _twoDP } = require('./helpers.js');
 const { priceList } = require('./helpers.js');
 const { calculateTotalDiscount } = require('./discounts');
 
-var _total = 0;
+var _total      = 0;
 var _finalTotal = 0;
-var _basket = [];
+var _basket     = [];
 
 const _scanItem = (item) => {
   _checkItemIsAvailable(item);
