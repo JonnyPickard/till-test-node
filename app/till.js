@@ -1,5 +1,5 @@
-const { _twoDP } = require('./helpers.js');
-const { priceList } = require('./helpers.js');
+const { _twoDP } = require('./helpers/two_decimal_places.js');
+const { priceList } = require('./price_list.js');
 const { calculateTotalDiscount } = require('./discounts');
 
 var _total      = 0;

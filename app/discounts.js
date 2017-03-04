@@ -1,4 +1,4 @@
-const { _twoDP } = require('./helpers.js');
+const { _twoDP } = require('./helpers/two_decimal_places.js');
 
 const _fivePercentOffOverFifty = (total) => {
   return (total >= 50) ? _twoDP(total * 0.95) : total;
